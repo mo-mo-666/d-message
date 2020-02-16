@@ -2,6 +2,7 @@ const MODE = "main";
 // const MODE = "debug";
 
 
+// カレンダーのアクセス日時を更新
 const record_cal_time = () => {
     const now = new Date();
     const spreadsheet = SpreadSheet(MODE);
@@ -9,6 +10,7 @@ const record_cal_time = () => {
 };
 
 
+// 毎日，カレンダーにアクセスする日をチェック
 const checker = () => {
     const now = new Date();
     const spreadsheet = SpreadSheet(MODE);
@@ -21,9 +23,14 @@ const checker = () => {
             MailApp.sendEmail(address, header, text);
         }
     };
+    // ダイイングメッセージが出る日
     if (now.getTime() > last_cal_time.getTime() + exe_day * 24 * 60 * 60 * 1000) {
         const ads = spreadsheet.get_exe_ads();
         send_each_mail(ads);
+        if (MODE == "main") {
+            trigger_del("checker");  // もう二度と出ないようにする
+        }
+    // 警告メッセージが出る日
     } else if (now.getTime() > last_cal_time.getTime() + warning_day * 24 * 60 * 60 * 1000){
         const ads = spreadsheet.get_warning_ads();
         send_each_mail(ads);
