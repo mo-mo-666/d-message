@@ -15,7 +15,7 @@ class SpreadSheet {
     get_notice_day() {
         const warning_day = this.data[1][1];  // 警告メールが出る日
         const exe_day = this.data[2][1];  // ダイイングが出る日
-        return warning_day, exe_day;
+        return [warning_day, exe_day];
     }
 
     // カレンダーに最後にアクセスした時間を更新
@@ -52,7 +52,7 @@ const get_document = (url) => {
     const doc = DocumentApp.openByUrl(url);
     const header = doc.getHeader().getText();  // ヘッダーがタイトル
     const text = doc.getBody().getText();  // 中身が本文
-    return header, text;
+    return [header, text];
 };
 
 
