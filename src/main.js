@@ -1,11 +1,11 @@
-const MODE = "main";
-// const MODE = "debug";
+// const MODE = "main";
+const MODE = "debug";
 
 
 // カレンダーのアクセス日時を更新
 const record_cal_time = () => {
     const now = new Date();
-    const spreadsheet = SpreadSheet(MODE);
+    const spreadsheet = new SpreadSheet(MODE);
     spreadsheet.set_last_cal_time(now);
 };
 
@@ -13,7 +13,7 @@ const record_cal_time = () => {
 // 毎日，カレンダーにアクセスする日をチェック
 const checker = () => {
     const now = new Date();
-    const spreadsheet = SpreadSheet(MODE);
+    const spreadsheet = new SpreadSheet(MODE);
     const last_cal_time = spreadsheet.get_last_cal_time(now);
     const [warning_day, exe_day] = spreadsheet.get_notice_day();
     const send_each_mail = (ads) => {
