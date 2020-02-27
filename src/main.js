@@ -1,5 +1,5 @@
 // const MODE = "main";
-const MODE = "debug";
+const MODE = "test";
 
 
 // カレンダーのアクセス日時を更新
